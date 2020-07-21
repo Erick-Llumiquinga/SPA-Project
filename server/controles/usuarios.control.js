@@ -177,17 +177,17 @@ let loginUsuario = async (req, res) => {
                     msg: 'Loggeded'
                 })
             } else {
-                return res.status(400).json({
-                    transaction: true,
-                    data: null,
+                return res.status(200).json({
+                    transaction: false,
+                    token: null,
                     msg: 'Credenciales incorrectas'
                 })
             }
         })
         .catch(err =>{
-            return res.status(400).json({
+            return res.status(200).json({
                 transaction: false,
-                data: null,
+                token: null,
                 msg: 'emial incorrecto'
             })
         })

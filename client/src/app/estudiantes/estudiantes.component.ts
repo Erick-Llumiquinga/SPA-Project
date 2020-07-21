@@ -30,7 +30,7 @@ export class EstudiantesComponent implements OnInit {
   }
 
   onFileChange(event) {
-    if(event.target.files && event.target.files.length > 0) {
+    if(event.target.files && event.target.files.length != 0) {
       const file = event.target.files[0];
       if(file.type.includes("image")) {
         const reader = new FileReader()

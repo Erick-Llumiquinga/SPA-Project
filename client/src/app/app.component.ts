@@ -7,10 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  prueba(){
-    localStorage.removeItem("guardarToken");
-    console.log(localStorage.getItem("guardarToken"));
-  }
-
-  title = 'ExpAngular';
+  title = 'SPA-Project';
 }

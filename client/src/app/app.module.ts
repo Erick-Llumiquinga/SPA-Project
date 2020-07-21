@@ -8,28 +8,29 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule  } from "@angular/forms";   
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EstudiantesComponent } from './estudiantes/estudiantes.component';
-import { ListaEstudiantesComponent } from './lista-estudiantes/lista-estudiantes.component';
+//import { EstudiantesComponent } from './estudiantes/estudiantes.component';
+//import { ListaEstudiantesComponent } from './lista-estudiantes/lista-estudiantes.component';
 import { LoginComponent } from './login/login.component';
-import { VerEstudianteComponent } from './ver-estudiante/ver-estudiante.component';
-import { UsuarioComponent } from './usuario/usuario.component';
+//import { VerEstudianteComponent } from './ver-estudiante/ver-estudiante.component';
+//import { UsuarioComponent } from './usuario/usuario.component';
+//import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EstudiantesComponent,
-    ListaEstudiantesComponent,
+    //EstudiantesComponent,
+    //ListaEstudiantesComponent,
     LoginComponent,
-    VerEstudianteComponent,
-    UsuarioComponent
+    //VerEstudianteComponent,
+    //UsuarioComponent,
+    //MenuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
-    
+    //ReactiveFormsModule
   ],
   providers: [ TokenGuard ],
   bootstrap: [AppComponent]

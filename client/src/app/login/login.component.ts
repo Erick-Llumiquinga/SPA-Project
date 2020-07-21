@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenService } from '../servicios/token.service';
+import { LoginService } from '../servicios/login.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -9,70 +11,68 @@ import { TokenService } from '../servicios/token.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private token:  TokenService,
-               private router: Router
-    ) { }
+  constructor(private loginService:  LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  tokenJwt: any;
-  nickname: any;
-  passw: any;
+  token: null;
+  datas: any;
+  emailUser: null
+  passwUser: null
 
-  ingresar(event){
-    let  data = {
-    "usuario" : {
-      "email" : this.nickname,
-      "password" :  this.passw
-    }
-    }
-    if(event.keyCode === 13)
-    {
-    this.token.login(data).subscribe(
-      response => {
-      
-        this.tokenJwt =response[ 'token' ];
-        //console.log(response);
-        localStorage.setItem("guardarToken", this.tokenJwt);
-        //console.log(localStorage.getItem("guardarToken"));
-        this.router.navigate(['/estudiantes']);
-       
-       }, 
-      error => {
-        alert("No estas registrado")
-        console.log('No vale');
-      }
-    )  
+  data = {
+    email: null,
+    password: null
   }
-}   
 
-pass(){
-  let  data = {
-  "usuario" : {
-    "nickname" : this.nickname,
-    "passw" :  this.passw
-  }
-  }
- 
-  this.token.login(data).subscribe(
-    response => {
+  login =  () => {
+
+    this.data.email = this.emailUser
+    this.data.password = this.passwUser
     
-      this.tokenJwt =response[ 'token' ];
-      //console.log(response);
-      localStorage.setItem("guardarToken", this.tokenJwt);
-      //console.log(localStorage.getItem("guardarToken"));
-      this.router.navigate(['/estudiantes']);
-     
+    this.loginService.login(this.data)
+    .subscribe(resp => {
+      console.log(resp)
+      if(!resp.transaction)
+      { 
+        return Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: `${resp.msg}!`,
+          footer: '<button class="btn" routerLink="/usuario">¿Aún no tienes una cuenta? Registrate </button>'
+          })
+      }
+      else {
+        localStorage.setItem('token', resp.token)
+        return this.router.navigate(['/menu'])
+      }
+    })
+  }
 
-     }, 
-    error => {
-      alert("No estas registrado")
-      console.log('No vale');
+  loginByEvent = (event) => {
+    
+    this.data.email = this.emailUser
+    this.data.password = this.passwUser
+    
+    if(event.keyCode === 13){
+      this.loginService.login(this.data)
+      .subscribe(resp => {
+        if(resp['transaction'])
+        {
+          localStorage.setItem('token', resp['token'])
+          
+          return this.router.navigate(['/estudiantes'])
+        }
+        else {
+          return Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: `${this.datas.msg}!`,
+          footer: '<a routerLink="/usuario">¿Aún no tienes una cuenta? Registrate </a>'
+          })
+        }
+      })
     }
-  )  
-
-}   
-
-
+  }
 }

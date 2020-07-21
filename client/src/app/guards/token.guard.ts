@@ -15,17 +15,13 @@ export class TokenGuard implements CanActivate {
 
   canActivate()
   {
-  
-    const auth  = localStorage.getItem("guardarToken");
+    const auth  = localStorage.getItem("token");
     if(auth == null) {
       console.log("no estas logeado");
      this.router.navigate(['/']);
       return false;
     }
       return true;
-   
-  
-    
   }
   
 }

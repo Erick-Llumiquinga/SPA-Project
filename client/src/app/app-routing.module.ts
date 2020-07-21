@@ -5,10 +5,11 @@ import { TokenGuard } from './guards/token.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login',   component: LoginComponent },
-  { path: 'estudiantes', canActivate: [ TokenGuard ],  loadChildren: () => import('./estudiantes/estudiantes.module').then(m => m.EstudiantesModule) },
-  { path: 'lista-estudiantes', canActivate: [ TokenGuard ],  loadChildren: () => import('./lista-estudiantes/lista-estudiantes.module').then(m => m.ListaEstudiantesModule) },
-  { path: 'ver-estudiante/:id', canActivate: [ TokenGuard ], loadChildren:() => import('./ver-estudiante/ver-estudiante.module').then(m => m.VerEstudianteModule) },
+  { path: 'login', component: LoginComponent },
+  { path: 'menu', canActivate:[TokenGuard],loadChildren: () => import('./menu/menu.module').then(r => r.MenuModule) }, 
+  { path: 'estudiantes', canActivate: [ TokenGuard ],  loadChildren: () => import('./estudiantes/estudiantes.module').then(r => r.EstudiantesModule) },
+  { path: 'lista-estudiantes', canActivate: [ TokenGuard ],  loadChildren: () => import('./lista-estudiantes/lista-estudiantes.module').then(r => r.ListaEstudiantesModule) },
+  { path: 'ver-estudiante/:id', canActivate: [ TokenGuard ], loadChildren:() => import('./ver-estudiante/ver-estudiante.module').then(r => r.VerEstudianteModule) },
   { path: 'usuario', loadChildren:() => import('./usuario/usuario.module').then(m =>m.UsuarioModule)  }
 ];
 
