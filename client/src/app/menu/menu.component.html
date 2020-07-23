@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+<!--<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="#">ESTUDIANTES</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,4 +21,45 @@
       </ul>
     </div>
     </div>
-</nav>
+</nav>-->
+
+<div class="container aspect">
+  <div class="row">
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center text-align">
+          <i class="fa fa-users fa-3x" style="color:#17a2b8"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">Estudiantes</h5>
+          <p class="card-text">Lista de los estudiantes inscritos</p>
+          <a routerLink="/lista-estudiantes" class="btn btn-info text-center ">Acceder</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center text-align">
+          <i class="fa fa-user-plus fa-3x" style="color:  #28a745"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">Nuevo Estudiante</h5>
+          <p class="card-text">Inscripción de un nuevo estudiante al sistema</p>
+          <a class="btn btn-success" routerLink="/estudiantes">Acceder</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="text-center text-align">
+            <a href="#" style="text-decoration: none; color: tomato;" (click)="logOut()">
+              <i class="fa fa-sign-out fa-3x"></i>
+              <h5 class="card-title">Cerrar Session</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
